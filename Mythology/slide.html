@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Slideshow</title>
+    <style>
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 600px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Hide all slides by default */
+        .slide {
+            display: none;
+        }
+
+        /* Show the active slide */
+        .slide.active {
+            display: block;
+        }
+
+        /* Image styling */
+        .slide img {
+            width: 100%;
+            height: auto;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .dot.active {
+            background: #ffd700;
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <!-- Slide images -->
+        <div class="slide active">
+            <img src="krishna.jpg" alt="Slide 1">
+        </div>
+        <div class="slide">
+            <img src="krishna.jpg" alt="Slide 2">
+        </div>
+        <div class="slide">
+            <img src="krishna.jpg" alt="Slide 3">
+        </div>
+
+        <!-- Navigation buttons -->
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(index) {
+            // Ensure index stays within bounds
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+            // Show the current slide
+            slides[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(n) {
+            currentSlide += n;
+            showSlide(currentSlide);
+        }
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
